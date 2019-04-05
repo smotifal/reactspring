@@ -2,5 +2,10 @@ language: java
 
 jdk:
   - oraclejdk8
+service:
+  - mysql
 before_install:
   - chmod +x mvnw
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS test;'
+
+  # Your application properties should have mysql as database settings
