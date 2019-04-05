@@ -1,6 +1,7 @@
 package fi.vamk.tka.reactspring.model;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -44,9 +45,14 @@ public class GroupTest {
         repository.save(item);
         // get the save one by findByName
         Group found = repository.findByName("Vaasa JUG");
-        assertEquals(found.getName(), item.getName());
+        assertNotNull(found);
+        if(found != null) {
+            assertEquals(found.getName(), item.getName());
+            //we Don't want to keep the data
+            repository.delete(found);
+        }
 
-        // copmare the initial and the saved one if the nale is the same
+        // copmare the initial and the saved one if the name is the same
 
         // use assertEquals
     }
